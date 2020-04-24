@@ -8,6 +8,7 @@ const User = mongoose.model("users");
 passport.serializeUser((user, done) => {
     done(null, user.id);
 });
+console.log('asdasd');
 
 passport.deserializeUser((id, done) => {
     User.findById(id).then(user => {
@@ -27,7 +28,7 @@ passport.use(
             const existingUser = await User.findOne({ googleId: profile.id });
 
             if (existingUser) {
-                // we already have a record with thee given profilee ID
+                // we already have a record with the given profile ID
                 return done(null, existingUser);
             }
             // we don't have a user record with this ID, make a new record
